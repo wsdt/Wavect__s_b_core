@@ -1,9 +1,9 @@
 import * as mongoose from "mongoose"
-import { COLLECTION_CHALLENGE_NAME } from "../../controllers/db/db.constants"
-import { ChallengeCategory } from "./ChallengeCategory"
-import { ImageURISource } from "./ImageURISource"
-import { Sponsor, SponsorFields, sponsorToResponse } from "./Sponsor"
-import { ApiResult } from "../../../routes/api/mobile/v1/ApiResult"
+import {COLLECTION_CHALLENGE_NAME} from "../../controllers/db/db.constants"
+import {ChallengeCategory} from "./ChallengeCategory"
+import {ImageURISource} from "./ImageURISource"
+import {Sponsor, SponsorFields, sponsorToResponse} from "./Sponsor"
+import {ApiResult} from "../../../routes/api/mobile/v1/ApiResult"
 
 /** Following constants must match the attribute values of the followed model to ensure typo-safety. */
 export enum ChallengeFields {
@@ -18,26 +18,24 @@ export enum ChallengeFields {
 }
 
 const ChallengeModel = new mongoose.Schema({
-    [ChallengeFields.id]: { type: String, unique: true, required: true, dropDups: true },
-    [ChallengeFields.headline]: { type: String, required: true },
-    [ChallengeFields.subline]: { type: String, required: true },
-    [ChallengeFields.bgImage]: { type: String, required: true, get: (v: string): ImageURISource => ({ uri: v }), set: (v: ImageURISource) => v.uri },
-    [ChallengeFields.whyDoesOrganizationSponsor]: { type: String, required: true },
-    [ChallengeFields.majorCategory]: { type: ChallengeCategory, required: true },
-    [ChallengeFields.sponsor]: { type: Number, required: true },
-    [ChallengeFields.expirationInMs]: { type: Number, required: true },
+    [ChallengeFields.id]: {type: String, unique: true, required: true, dropDups: true},
+    [ChallengeFields.headline]: {type: String, required: true},
+    [ChallengeFields.subline]: {type: String, required: true},
+    [ChallengeFields.bgImage]: {type: String, required: true, get: (v:string):ImageURISource => ({uri: v}), set: (v:ImageURISource) => v.uri},
+    [ChallengeFields.whyDoesOrganizationSponsor]: {type: String, required: true},
+    [ChallengeFields.majorCategory]: {type: ChallengeCategory, required: true},
+    [ChallengeFields.sponsor]: {type: Number, required: true},
+    [ChallengeFields.expirationInMs]: {type: Number, required: true},
 })
 
 // Configuration, needed to enable getters
-ChallengeModel.set("toObject", { getters: true })
-ChallengeModel.set("toJSON", { getters: true })
+ChallengeModel.set("toObject", {getters: true})
+ChallengeModel.set("toJSON", {getters: true})
 
-export const challengeToResponse = async (err: any, challenge: any): Promise<ApiResult> => {
-    const sponsor: any = await Sponsor.findOne({ [SponsorFields.id]: challenge.sponsor }).exec()
+export const challengeToResponse = async (err: any,challenge: any):Promise<ApiResult> => {
+    const sponsor:any = await Sponsor.findOne({ [SponsorFields.id]: challenge.sponsor }).exec()
 
-    if (!sponsor) {
-        err = [...err, "Sponsor with id " + challenge.sponsor + " not found"]
-    }
+    if (!sponsor) {err = [...err, "Sponsor with id "+challenge.sponsor+" not found"]}
 
     return new ApiResult(err, {
         [ChallengeFields.id]: challenge.id,

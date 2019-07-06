@@ -1,6 +1,7 @@
 import * as mongoose from "mongoose"
 import { COLLECTION_SETTINGS_NAME } from "../../controllers/db/db.constants"
 
+
 /** Following constants must match the attribute values of the followed model to ensure typo-safety. */
 export enum SettingsFields {
     userId = "userId",

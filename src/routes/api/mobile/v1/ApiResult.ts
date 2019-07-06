@@ -1,12 +1,12 @@
-import { Response } from "express"
-import { NativeError } from "mongoose"
+import {Response} from "express"
+import {NativeError} from "mongoose"
 
 export class ApiResult {
     get err(): string | Error | NativeError | Array<string | Error | NativeError> | null {
         return this._err
     }
 
-    set err(value: string | Error | NativeError | Array<string | Error | NativeError> | null) {
+    set err(value:string | Error | NativeError | Array<string | Error | NativeError> | null) {
         this._err = value
     }
 
@@ -17,12 +17,8 @@ export class ApiResult {
     set res(value: [] | {} | null) {
         this._res = value
     }
-
-    public static sendJson = (
-        resp: Response,
-        err: string | Error | NativeError | Array<string | Error | NativeError> | null,
-        res: [] | {} | null
-    ) => {
+    
+    public static sendJson = (resp: Response, err: string | Error | NativeError | Array<string | Error | NativeError> | null, res: []|{}|null) => {
         new ApiResult(err, res).sendJson(resp)
     }
 
@@ -35,10 +31,10 @@ export class ApiResult {
         this._res = res
 
         if (err) {
-            console.error("ApiResult:constructor: Received errors -> " + JSON.stringify(err))
+            console.error("ApiResult:constructor: Received errors -> "+JSON.stringify(err))
         }
     }
-
+    
     public sendJson = (res: Response) => {
         res.json(this.toJson())
     }
@@ -48,7 +44,7 @@ export class ApiResult {
             err: this.err,
             res: this.res,
         }
-        console.log("ApiResult:toJson: Returning -> " + JSON.stringify(result))
+        console.log("ApiResult:toJson: Returning -> "+JSON.stringify(result))
         return result
     }
 
