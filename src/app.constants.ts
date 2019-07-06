@@ -9,7 +9,7 @@ export const USE_HTTPS: boolean = false
  * Determines on which port the application can be called. Please keep in mind that maybe other
  * applications (e.g. Frontend, db, ...) run on the same machine especially during development!
  */
-export const PORT = 8090
+export const PORT = process.env.PORT ? process.env.PORT : 8090
 
 /**
  * Paths to http2Server certificate and private key for a secure TLS connection. But keep in mind
@@ -25,4 +25,5 @@ export const HTTP2_OPTIONS = {
  */
 export const CLIENT_WEB = "https://localhost:8080"
 
-export const DATABASE_URI = `mongodb://192.168.99.100:27017/${DB_NAME}`
+export const DATABASE_URI = (process.env.DATABASE_URI && process.env.DATABASE_NAME)
+    ? `${process.env.DATABASE_URI}/${DB_NAME}` : `mongodb://192.168.99.100:27017/${DB_NAME}`

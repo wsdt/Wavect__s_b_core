@@ -1,6 +1,6 @@
-export const DB_NAME: string = "wavect"
+export const DB_NAME: string = process.env.DATABASE_NAME ? process.env.DATABASE_NAME : "wavect"
 
 export const COLLECTION_SETTINGS_NAME = "settings"
-export const COLLECTION_CHALLENGE_NAME = "ChallengeController.ts"
-export const COLLECTION_SPONSOR_NAME = "sponsor"
+export const COLLECTION_CHALLENGE_NAME = "challenges"
+export const COLLECTION_SPONSOR_NAME = "sponsors"
 export const SPONSOR_CHALLENGE_CONSTANT = 0
