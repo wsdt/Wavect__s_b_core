@@ -1,5 +1,8 @@
 import * as mongoose from "mongoose"
 import { DATABASE_URI } from "../../../app.constants"
+import { BackendLogger } from "../../../logger/backendLogger"
+
+const logger = new BackendLogger("db.ts")
 
 export const establishDbConnection = () => {
     // No need to create db here, as it is created automatically when inserting sth.
@@ -12,7 +15,7 @@ export const establishDbConnection = () => {
     const db: mongoose.Connection = mongoose.connection
     db.on("error", console.error.bind(console, "connection error:"))
     db.once("open", () => {
-        console.log("establishDbConnection: Db connection opened.")
+        logger.info("Established Database-Connection successfully!")
     })
 }
 

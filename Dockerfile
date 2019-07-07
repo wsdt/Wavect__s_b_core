@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 # Install app dependencies (copy lock and normal package.json)
 COPY package.json ./
 COPY ./secrets ./secrets
+COPY ./logs ./logs
 COPY dist/ dist/
 RUN yarn install
 
