@@ -1,6 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose = require("mongoose");
 var db_constants_1 = require("../../controllers/db/db.constants");
 var ApiResult_1 = require("../../../routes/api/mobile/v1/ApiResult");

@@ -1,6 +1,6 @@
 import * as express from "express"
 import { Settings } from "../../../../mvc/models/mobile/Settings"
-import {ApiResult} from "./ApiResult"
+import { ApiResult } from "./ApiResult"
 
 const router = express.Router()
 
