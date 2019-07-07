@@ -1,4 +1,11 @@
-const parentScripts = require("../../_base/package-scripts")
+let parentScripts
+try {
+    parentScripts = require("../../_base/package-scripts") // e.g. in independent docker builds this file won't be available
+} catch (e) {
+    parentScripts = {
+        scripts: {}
+    }
+}
 
 parentScripts.scripts.default = 'concurrently --kill-others "tsc -w" "nodemon ./dist/server.js"'
 parentScripts.scripts.once = "ts-node ./src/server.ts"
