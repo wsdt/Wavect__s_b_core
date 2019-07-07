@@ -34,14 +34,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var _a;
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var _a;
 var mongoose = require("mongoose");
+var ApiResult_1 = require("../../../routes/api/mobile/v1/ApiResult");
 var db_constants_1 = require("../../controllers/db/db.constants");
 var ChallengeCategory_1 = require("./ChallengeCategory");
 var Sponsor_1 = require("./Sponsor");
-var ApiResult_1 = require("../../../routes/api/mobile/v1/ApiResult");
 var ChallengeFields;
 (function (ChallengeFields) {
     ChallengeFields["id"] = "id";
@@ -66,7 +66,8 @@ var ChallengeModel = new mongoose.Schema((_a = {},
 ChallengeModel.set("toObject", { getters: true });
 ChallengeModel.set("toJSON", { getters: true });
 exports.challengeToResponse = function (err, challenge) { return __awaiter(_this, void 0, void 0, function () {
-    var _a, _b, sponsor;
+    var sponsor;
+    var _a, _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0: return [4, Sponsor_1.Sponsor.findOne((_a = {}, _a[Sponsor_1.SponsorFields.id] = challenge.sponsor, _a)).exec()];
