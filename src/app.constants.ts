@@ -25,5 +25,5 @@ export const HTTP2_OPTIONS = {
  */
 export const CLIENT_WEB = "https://localhost:8080"
 
-export const DATABASE_URI = (process.env.DATABASE_URI && process.env.DATABASE_NAME)
-    ? `${process.env.DATABASE_URI}/${DB_NAME}` : `mongodb://192.168.99.100:27017/${DB_NAME}`
+export const DATABASE_URI =
+    process.env.DATABASE_URI && process.env.DATABASE_NAME ? `${process.env.DATABASE_URI}/${DB_NAME}` : `mongodb://192.168.99.100:27017/${DB_NAME}`

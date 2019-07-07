@@ -10,7 +10,7 @@ import * as routes from "./routes/routes"
 import * as dotenv from "dotenv"
 
 // Set env variables
-dotenv.config({path: __dirname+"/./../secrets/globals.env"})
+dotenv.config({ path: __dirname + "/./../secrets/globals.env" })
 
 /**
  * Using spdy as http2 too, but not that fast as built-in module of node.JS.

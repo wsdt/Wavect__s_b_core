@@ -1,7 +1,7 @@
 import * as express from "express"
 import { sendEmailToSponsor } from "../../../../mvc/controllers/email/email"
-import {Settings, SettingsFields} from "../../../../mvc/models/mobile/Settings"
-import {ApiResult} from "./ApiResult"
+import { Settings, SettingsFields } from "../../../../mvc/models/mobile/Settings"
+import { ApiResult } from "./ApiResult"
 
 const router = express.Router()
 
