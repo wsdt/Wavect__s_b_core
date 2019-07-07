@@ -33,7 +33,6 @@ const ChallengeModel = new mongoose.Schema({
 ChallengeModel.set("toObject", { getters: true })
 ChallengeModel.set("toJSON", { getters: true })
 
-
 export const challengeToResponse = async (err: any, challenge: any): Promise<ApiResult> => {
     const sponsor: any = await Sponsor.findOne({ [SponsorFields.id]: challenge.sponsor }).exec()
 

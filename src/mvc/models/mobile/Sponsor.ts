@@ -34,7 +34,6 @@ const SponsorModel = new mongoose.Schema({
 SponsorModel.set("toObject", { getters: true })
 SponsorModel.set("toJSON", { getters: true })
 
-
 export const sponsorToResponse = (err: any, sponsor: any): ApiResult => {
     // use function not arrow for this
     return new ApiResult(err, {

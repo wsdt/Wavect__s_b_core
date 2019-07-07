@@ -2,18 +2,18 @@ import * as express from "express"
 import { SPONSOR_CHALLENGE_CONSTANT } from "../../../../mvc/controllers/db/db.constants"
 import { Challenge, challengeToResponse } from "../../../../mvc/models/mobile/Challenge"
 import { ApiResult } from "./ApiResult"
+import { BackendLogger } from "../../../../logger/backendLogger"
 
 const router = express.Router()
+const logger = new BackendLogger("challenge.ts")
 
-/**
- * use constant = 0 to indicate that we're using always a current obj
- */
 router.route("/current").get((_, res) => {
     Challenge.findOne({ id: SPONSOR_CHALLENGE_CONSTANT }).exec(async (err, challenge) => {
         if (challenge) {
             ;(await challengeToResponse(err, challenge)).sendJson(res)
+            logger.info(`GET Request for ${challenge} was successful`)
         } else {
-            console.log("Challenge: Challenge undefined")
+            logger.error(`GET Request for ${challenge} failed`)
             ApiResult.sendJson(res, [err, "Challenge undefined"], null)
         }
     })
