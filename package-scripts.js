@@ -3,7 +3,7 @@ try {
     parentScripts = require("../../_base/package-scripts") // e.g. in independent docker builds this file won't be available
 } catch (e) {
     parentScripts = {
-        scripts: {}
+        scripts: {},
     }
 }
 
