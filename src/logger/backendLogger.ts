@@ -1,14 +1,14 @@
 import * as path from "path"
 
-const log = require("simple-node-logger")
+const log = require("simple-node-logger") // use require as no declaration file exists
 const timestampFormat = "YYY-MM-DD HH:mm:ss.SSS"
 
 export class BackendLogger {
     private filename: string
     private logger: any
 
-    constructor(logfilePath: string) {
-        this.filename = logfilePath
+    constructor(fileNameWithoutExtension: string) {
+        this.filename = fileNameWithoutExtension
 
         const opts = {
             logFilePath: path.join(process.cwd(), "logs", `${this.filename}.log`),

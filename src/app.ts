@@ -1,5 +1,6 @@
 import * as bodyParser from "body-parser"
 import * as cors from "cors"
+import * as dotenv from "dotenv"
 import * as express from "express"
 import * as graphqlHTTP from "express-graphql"
 import * as helmet from "helmet"
@@ -7,7 +8,6 @@ import * as morgan from "morgan"
 import { CLIENT_WEB, HTTP2_OPTIONS, PORT, USE_HTTPS } from "./app.constants"
 import { graphqlRoot, graphqlSchema } from "./graphql/graphql_queries"
 import * as routes from "./routes/routes"
-import * as dotenv from "dotenv"
 
 // Set env variables
 dotenv.config({ path: __dirname + "/./../secrets/globals.env" })
