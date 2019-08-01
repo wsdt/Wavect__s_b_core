@@ -1,5 +1,5 @@
 export enum ChallengeCategory {
-    ENVIRONMENT = "ENVIRONMENT",
-    HEALTH = "HEALTH",
-    SOCIETY = "SOCIETY",
+    ENVIRONMENT = 'ENVIRONMENT',
+    HEALTH = 'HEALTH',
+    SOCIETY = 'SOCIETY',
 }
