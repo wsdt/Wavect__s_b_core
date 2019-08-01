@@ -10,6 +10,7 @@ const logger = new BackendLogger("challenge.ts")
 router.route("/current").get((_, res) => {
     Challenge.findOne({ id: SPONSOR_CHALLENGE_CONSTANT }).exec(async (err, challenge) => {
         if (challenge) {
+
             ;(await challengeToResponse(err, challenge)).sendJson(res)
             logger.info(`GET Request for ${challenge} was successful`)
         } else {
@@ -19,13 +20,15 @@ router.route("/current").get((_, res) => {
     })
 })
 
-router.route("/current").post((req, res) => {
+/*router.route("/current").post((req, res) => {
     const challenge = new Challenge({
         id: req.body.id,
         headline: req.body.headline,
         subline: req.body.subline,
         whyDoesOrganizationSponsor: req.body.whyDoesOrganizationSponsor,
         majorCategory: req.body.majorCategory,
+        misc: req.body.misc,
+        aboutUs: req.body.aboutUs,
         sponsor: req.body.sponsor,
         expirationInMs: req.body.expirationInMs,
         bgImage: req.body.bgImage,
@@ -34,6 +37,6 @@ router.route("/current").post((req, res) => {
     challenge.save(err => {
         ApiResult.sendJson(res, err, null)
     })
-})
+})*/
 
 export = router
