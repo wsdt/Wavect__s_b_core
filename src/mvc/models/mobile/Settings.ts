@@ -1,11 +1,11 @@
-import * as mongoose from "mongoose"
-import { COLLECTION_SETTINGS_NAME } from "../../controllers/db/db.constants"
+import * as mongoose from 'mongoose'
+import { COLLECTION_SETTINGS_NAME } from '../../controllers/db/db.constants'
 
 /** Following constants must match the attribute values of the followed model to ensure typo-safety. */
 export enum SettingsFields {
-    userId = "userId",
-    email = "email",
-    hasAcceptedDataPrivacy = "hasAcceptedDataPrivacy",
+    userId = 'userId',
+    email = 'email',
+    hasAcceptedDataPrivacy = 'hasAcceptedDataPrivacy',
 }
 
 const SettingsModel = new mongoose.Schema({

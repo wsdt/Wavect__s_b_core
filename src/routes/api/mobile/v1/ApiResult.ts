@@ -1,5 +1,5 @@
-import { Response } from "express"
-import { NativeError } from "mongoose"
+import { Response } from 'express'
+import { NativeError } from 'mongoose'
 
 export class ApiResult {
     get err(): string | Error | NativeError | Array<string | Error | NativeError> | null {
@@ -35,7 +35,7 @@ export class ApiResult {
         this._res = res
 
         if (err) {
-            console.error("ApiResult:constructor: Received errors -> " + JSON.stringify(err))
+            console.error('ApiResult:constructor: Received errors -> ' + JSON.stringify(err))
         }
     }
 
@@ -48,7 +48,7 @@ export class ApiResult {
             err: this.err,
             res: this.res,
         }
-        console.log("ApiResult:toJson: Returning -> " + JSON.stringify(result))
+        console.log('ApiResult:toJson: Returning -> ' + JSON.stringify(result))
         return result
     }
 
