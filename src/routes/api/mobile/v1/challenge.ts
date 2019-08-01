@@ -10,7 +10,7 @@ const logger = new BackendLogger("challenge.ts")
 router.route("/current").get((_, res) => {
     Challenge.findOne({ id: SPONSOR_CHALLENGE_CONSTANT }).exec(async (err, challenge) => {
         if (challenge) {
-            (await challengeToResponse(err, challenge)).sendJson(res)
+            ;(await challengeToResponse(err, challenge)).sendJson(res)
             logger.info(`GET Request for ${challenge} was successful`)
         } else {
             logger.error(`GET Request for ${challenge} failed`)
