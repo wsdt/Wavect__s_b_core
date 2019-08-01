@@ -1,11 +1,11 @@
 import * as express from "express"
-import {Settings} from "../../../../mvc/models/mobile/Settings"
-import {ApiResult} from "./ApiResult"
+import { Settings } from "../../../../mvc/models/mobile/Settings"
+import { ApiResult } from "./ApiResult"
 
 const router = express.Router()
 
 router.route("/:userId").get((req, res) => {
-    Settings.findOne({userId: req.params.userId}).exec((err, userSetting) => {
+    Settings.findOne({ userId: req.params.userId }).exec((err, userSetting) => {
         ApiResult.sendJson(res, err, userSetting)
     })
 })
@@ -18,17 +18,16 @@ router.route("/:userId").post((req, res) => {
     })
 
     // Delete old settings TODO: Does not seem to work as expected (if not deleted the user cannot insert his email when it has been already used [as we curr use temp. generated userIds this is necessary)
-    Settings.deleteOne({email: req.body.email}, ((err: any) => {
-            if (err) {
-                console.error(err)
-            }
-            console.log("settings:post: Tried to deleted old setting before inserting new one.")
-
-            settings.save(err2 => {
-                ApiResult.sendJson(res, [err, err2], null)
-            })
+    Settings.deleteOne({ email: req.body.email }, (err: any) => {
+        if (err) {
+            console.error(err)
         }
-    ))
+        console.log("settings:post: Tried to deleted old setting before inserting new one.")
+
+        settings.save(err2 => {
+            ApiResult.sendJson(res, [err, err2], null)
+        })
+    })
 })
 
 export = router
