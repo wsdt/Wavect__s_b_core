@@ -5,6 +5,7 @@ import { COLLECTION_CHALLENGE_NAME } from '../../controllers/db/db.constants'
 import { ChallengeCategory } from './ChallengeCategory'
 import { ImageURISource } from './ImageURISource'
 import { Sponsor, SponsorFields, sponsorToResponse } from './Sponsor'
+import {ChallengeInformation, ChallengeInformationFields, challengeInformationResponse} from "./ChallengeInformation";
 
 /** Following constants must match the attribute values of the followed model to ensure typo-safety. */
 export enum ChallengeFields {
@@ -15,6 +16,7 @@ export enum ChallengeFields {
     whyDoesOrganizationSponsor = 'whyDoesOrganizationSponsor',
     majorCategory = 'majorCategory',
     sponsor = 'sponsor',
+    challengeInformation = 'challengeInformation',
     expirationInMs = 'expirationInMs',
 }
 
@@ -26,6 +28,7 @@ const ChallengeModel = new mongoose.Schema({
     [ChallengeFields.whyDoesOrganizationSponsor]: { type: String, required: true },
     [ChallengeFields.majorCategory]: { type: ChallengeCategory, required: true },
     [ChallengeFields.sponsor]: { type: Number, required: true },
+    [ChallengeFields.challengeInformation]: { type: Number, required: true },
     [ChallengeFields.expirationInMs]: { type: Number, required: true },
 })
 
@@ -35,9 +38,14 @@ ChallengeModel.set('toJSON', { getters: true })
 
 export const challengeToResponse = async (err: any, challenge: any): Promise<ApiResult> => {
     const sponsor: any = await Sponsor.findOne({ [SponsorFields.id]: challenge.sponsor }).exec()
+    const challengeInformation: any = await ChallengeInformation.findOne({[ChallengeInformationFields.id]: challenge.challengeInformation}).exec()
 
     if (!sponsor) {
         err = [...err, 'Sponsor with id ' + challenge.sponsor + ' not found']
+    }
+
+    if(!challengeInformation) {
+        err = [...err, '[BRUH] No ChallengeInformation found!']
     }
 
     return new ApiResult(err, {
@@ -48,6 +56,7 @@ export const challengeToResponse = async (err: any, challenge: any): Promise<Api
         [ChallengeFields.whyDoesOrganizationSponsor]: challenge.whyDoesOrganizationSponsor,
         [ChallengeFields.majorCategory]: challenge.majorCategory,
         [ChallengeFields.sponsor]: sponsorToResponse(err, sponsor).res,
+        [ChallengeFields.challengeInformation]: challengeInformationResponse(err, challengeInformation).res,
         [ChallengeFields.expirationInMs]: challenge.expirationInMs,
     })
 }
