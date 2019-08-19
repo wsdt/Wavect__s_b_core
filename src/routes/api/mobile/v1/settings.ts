@@ -10,7 +10,7 @@ router.route("/:userId").get((req, res) => {
     })
 })
 
-router.route('/:userId').post((req, res) => {
+router.route("/:userId").post((req, res) => {
     const settings = new Settings({
         userId: req.params.userId,
         email: req.body.email,

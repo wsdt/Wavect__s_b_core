@@ -1,22 +1,21 @@
-
-import { ApiResult} from "../../../routes/api/mobile/v1/ApiResult"
+import { ApiResult } from "../../../routes/api/mobile/v1/ApiResult"
 import * as mongoose from "mongoose"
-import {COLLECTION_CHALLENGEINFORMATION_NAME} from "../../controllers/db/db.constants"
+import { COLLECTION_CHALLENGEINFORMATION_NAME } from "../../controllers/db/db.constants"
 
 export enum ChallengeInformationFields {
-    id = 'id',
-    instruction = 'instruction',
-    privacy = 'privacy',
-    intention = 'intention',
-    misc = 'misc'
+    id = "id",
+    instruction = "instruction",
+    privacy = "privacy",
+    intention = "intention",
+    misc = "misc",
 }
 
-const ChallengeInformationModel = new mongoose.Schema( {
-    [ChallengeInformationFields.id]: {type: String, unique: true, required: true },
-    [ChallengeInformationFields.instruction]: {type: String, required: true },
-    [ChallengeInformationFields.privacy]: {type: String, required: true },
-    [ChallengeInformationFields.intention]: {type: String, required: true },
-    [ChallengeInformationFields.misc]: {type: String,  required: false },
+const ChallengeInformationModel = new mongoose.Schema({
+    [ChallengeInformationFields.id]: { type: String, unique: true, required: true },
+    [ChallengeInformationFields.instruction]: { type: String, required: true },
+    [ChallengeInformationFields.privacy]: { type: String, required: true },
+    [ChallengeInformationFields.intention]: { type: String, required: true },
+    [ChallengeInformationFields.misc]: { type: String, required: false },
 })
 
 export const challengeInformationResponse = (err: any, info: any): ApiResult => {
