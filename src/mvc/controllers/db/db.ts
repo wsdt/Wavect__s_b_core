@@ -1,8 +1,8 @@
-import * as mongoose from "mongoose"
-import { DATABASE_URI } from "../../../app.constants"
-import { BackendLogger } from "../../../logger/backendLogger"
+import * as mongoose from 'mongoose'
+import { DATABASE_URI } from '../../../app.constants'
+import { BackendLogger } from '../../../logger/backendLogger'
 
-const logger = new BackendLogger("db.ts")
+const logger = new BackendLogger('db.ts')
 
 export const establishDbConnection = () => {
     // No need to create db here, as it is created automatically when inserting sth.
@@ -11,11 +11,14 @@ export const establishDbConnection = () => {
     /* NO NEED to create Collections as they are created when the first record
     is inserted and it did not exist before. */
 
-    mongoose.connect(DATABASE_URI, { useNewUrlParser: true })
+    mongoose.connect(DATABASE_URI, { useNewUrlParser: true }).then(() => {
+        // unhandled promise exception warning gone! (maybe the db setup has to be changed in future!)
+        console.log('Connection SUCCESSFUL')
+    })
     const db: mongoose.Connection = mongoose.connection
-    db.on("error", console.error.bind(console, "connection error:"))
-    db.once("open", () => {
-        logger.info("Established Database-Connection successfully!")
+    db.on('error', console.error.bind(console, 'connection error:'))
+    db.once('open', () => {
+        logger.info('Established Database-Connection successfully!')
     })
 }
 
