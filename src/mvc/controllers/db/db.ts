@@ -11,7 +11,10 @@ export const establishDbConnection = () => {
     /* NO NEED to create Collections as they are created when the first record
     is inserted and it did not exist before. */
 
-    mongoose.connect(DATABASE_URI, { useNewUrlParser: true })
+    mongoose.connect(DATABASE_URI, { useNewUrlParser: true }).then(() => {
+        // unhandled promise exception warning gone! (maybe the db setup has to be changed in future!)
+        console.log('Connection SUCCESSFUL')
+    })
     const db: mongoose.Connection = mongoose.connection
     db.on('error', console.error.bind(console, 'connection error:'))
     db.once('open', () => {

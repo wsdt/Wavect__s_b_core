@@ -1,25 +1,25 @@
-import * as bodyParser from 'body-parser'
-import * as cors from 'cors'
-import * as dotenv from 'dotenv'
-import * as express from 'express'
-import * as graphqlHTTP from 'express-graphql'
-import * as helmet from 'helmet'
-import * as morgan from 'morgan'
-import { CLIENT_WEB, HTTP2_OPTIONS, PORT, USE_HTTPS } from './app.constants'
-import { graphqlRoot, graphqlSchema } from './graphql/graphql_queries'
-import * as routes from './routes/routes'
+import * as bodyParser from "body-parser"
+import * as cors from "cors"
+import * as dotenv from "dotenv"
+import * as express from "express"
+import * as graphqlHTTP from "express-graphql"
+import * as helmet from "helmet"
+import * as morgan from "morgan"
+import { CLIENT_WEB, HTTP2_OPTIONS, PORT, USE_HTTPS } from "./app.constants"
+import { graphqlRoot, graphqlSchema } from "./graphql/graphql_queries"
+import * as routes from "./routes/routes"
 
 // Set env variables
-dotenv.config({ path: __dirname + '/./../secrets/globals.env' })
+dotenv.config({ path: __dirname + "/./../secrets/globals.env" })
 
 /**
  * Using spdy as http2 too, but not that fast as built-in module of node.JS.
  * But unfortunately, http2-module does not support express yet, so we have to
  * wait for express V5 to use http2 instead of spdy.
  */
-import * as http from 'http'
-import * as http2 from 'spdy'
-import { establishDbConnection } from './mvc/controllers/db/db'
+import * as http from "http"
+import * as http2 from "spdy"
+import { establishDbConnection } from "./mvc/controllers/db/db"
 
 /**
  * Use HTTP 2, Server-Sent-Events and TSL.
@@ -50,7 +50,7 @@ class App {
                 console.error(err)
                 return process.exit(1)
             } else {
-                console.log('App:runServer: Listening on port: ' + PORT + ' using http2: ' + USE_HTTPS)
+                console.log("App:runServer: Listening on port: " + PORT + " using http2: " + USE_HTTPS)
             }
         })
     }
@@ -71,7 +71,7 @@ class App {
 
         // graphql
         this.app.use(
-            '/graphql',
+            "/graphql",
             graphqlHTTP({
                 graphiql: true,
                 rootValue: graphqlRoot,
@@ -83,15 +83,15 @@ class App {
         establishDbConnection()
 
         // Add routes (sse + rest api)
-        this.app.use('/', routes)
+        this.app.use("/", routes)
 
         // For additional security
         this.app.use(helmet())
 
         // Log http requests
-        this.app.use(morgan('combined'))
+        this.app.use(morgan("combined"))
 
-        console.log('app: Configuration done.')
+        console.log("app: Configuration done.")
     }
 }
 
