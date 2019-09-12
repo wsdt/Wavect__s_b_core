@@ -1,16 +1,16 @@
-import * as express from "express"
-import { Settings } from "../../../../mvc/models/mobile/Settings"
-import { ApiResult } from "./ApiResult"
+import * as express from 'express'
+import { Settings } from '../../../../mvc/models/mobile/Settings'
+import { ApiResult } from './ApiResult'
 
 const router = express.Router()
 
-router.route("/:userId").get((req, res) => {
+router.route('/:userId').get((req, res) => {
     Settings.findOne({ userId: req.params.userId }).exec((err, userSetting) => {
         ApiResult.sendJson(res, err, userSetting)
     })
 })
 
-router.route("/:userId").post((req, res) => {
+router.route('/:userId').post((req, res) => {
     const settings = new Settings({
         userId: req.params.userId,
         email: req.body.email,
@@ -22,7 +22,7 @@ router.route("/:userId").post((req, res) => {
         if (err) {
             console.error(err)
         }
-        console.log("settings:post: Tried to deleted old setting before inserting new one.")
+        console.log('settings:post: Tried to deleted old setting before inserting new one.')
 
         settings.save(err2 => {
             ApiResult.sendJson(res, [err, err2], null)

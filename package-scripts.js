@@ -1,6 +1,6 @@
 let parentScripts
 try {
-    parentScripts = require("../../_base/package-scripts") // e.g. in independent docker builds this file won't be available
+    parentScripts = require('../../_base/package-scripts') // e.g. in independent docker builds this file won't be available
 } catch (e) {
     parentScripts = {
         scripts: {},
@@ -8,8 +8,8 @@ try {
 }
 
 parentScripts.scripts.default = 'concurrently --kill-others "tsc -w" "nodemon ./dist/server.js"'
-parentScripts.scripts.once = "ts-node ./src/server.ts"
-parentScripts.scripts.production = "node ./dist/server.js"
-parentScripts.scripts.build = "tsc"
+parentScripts.scripts.once = 'ts-node ./src/server.ts'
+parentScripts.scripts.production = 'node ./dist/server.js'
+parentScripts.scripts.build = 'tsc'
 
 module.exports = parentScripts

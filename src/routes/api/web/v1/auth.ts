@@ -1,9 +1,9 @@
-import * as express from "express"
-import { createUserToken } from "../../../../mvc/controllers/getstream/GetStreamController"
+import * as express from 'express'
+import { createUserToken } from '../../../../mvc/controllers/getstream/GetStreamController'
 
 const router = express.Router()
 
-router.route("/auth/:userId").get((req, res) => {
+router.route('/auth/:userId').get((req, res) => {
     const userId = req.params.userId // just assumed for testing that userId has been used to get the following User obj -> user[0]
 
     // res.json(User.getUserById(req.params.userId).getPostsByFollowings())

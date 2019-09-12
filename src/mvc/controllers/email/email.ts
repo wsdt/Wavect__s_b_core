@@ -1,8 +1,8 @@
-import * as nodemailer from "nodemailer"
-import { FROM, FROM_PWD, HTML, REPLY_TO, SMTP_PROVIDER, SUBJECT } from "./email.constants"
-import { BackendLogger } from "../../../logger/backendLogger"
+import * as nodemailer from 'nodemailer'
+import { FROM, FROM_PWD, HTML, REPLY_TO, SMTP_PROVIDER, SUBJECT } from './email.constants'
+import { BackendLogger } from '../../../logger/backendLogger'
 
-const logger = new BackendLogger("email.ts")
+const logger = new BackendLogger('email.ts')
 
 // Might throw a console error
 const transporter = nodemailer.createTransport({
@@ -27,9 +27,9 @@ export const sendEmailToSponsor = async (userEmail: string, sponsorEmail: string
 
     try {
         transporter.sendMail(mailOptions)
-        logger.info("Email sent!")
+        logger.info('Email sent!')
     } catch (e) {
-        logger.error("Email not sent, Error:" + e.toString())
+        logger.error('Email not sent, Error:' + e.toString())
         return e
     }
     return null
