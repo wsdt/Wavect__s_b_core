@@ -1,21 +1,21 @@
-import * as mongoose from 'mongoose'
+import * as mongoose from "mongoose"
 
-import { ApiResult } from '../../../routes/api/mobile/v1/ApiResult'
-import { COLLECTION_CHALLENGE_NAME } from '../../controllers/db/db.constants'
-import { ChallengeCategory } from './ChallengeCategory'
-import { ImageURISource } from './ImageURISource'
-import { Sponsor, SponsorFields, sponsorToResponse } from './Sponsor'
+import { ApiResult } from "../../../routes/api/mobile/v1/ApiResult"
+import { COLLECTION_CHALLENGE_NAME } from "../../controllers/db/db.constants"
+import { ChallengeCategory } from "./ChallengeCategory"
+import { ImageURISource } from "./ImageURISource"
+import { Sponsor, SponsorFields, sponsorToResponse } from "./Sponsor"
 
 /** Following constants must match the attribute values of the followed model to ensure typo-safety. */
 export enum ChallengeFields {
-    id = 'id',
-    headline = 'headline',
-    subline = 'subline',
-    bgImage = 'bgImage',
-    whyDoesOrganizationSponsor = 'whyDoesOrganizationSponsor',
-    majorCategory = 'majorCategory',
-    sponsor = 'sponsor',
-    expirationInMs = 'expirationInMs',
+    id = "id",
+    headline = "headline",
+    subline = "subline",
+    bgImage = "bgImage",
+    whyDoesOrganizationSponsor = "whyDoesOrganizationSponsor",
+    majorCategory = "majorCategory",
+    sponsor = "sponsor",
+    expirationInMs = "expirationInMs",
 }
 
 const ChallengeModel = new mongoose.Schema({
@@ -30,14 +30,14 @@ const ChallengeModel = new mongoose.Schema({
 })
 
 // Configuration, needed to enable getters
-ChallengeModel.set('toObject', { getters: true })
-ChallengeModel.set('toJSON', { getters: true })
+ChallengeModel.set("toObject", { getters: true })
+ChallengeModel.set("toJSON", { getters: true })
 
 export const challengeToResponse = async (err: any, challenge: any): Promise<ApiResult> => {
     const sponsor: any = await Sponsor.findOne({ [SponsorFields.id]: challenge.sponsor }).exec()
 
     if (!sponsor) {
-        err = [...err, 'Sponsor with id ' + challenge.sponsor + ' not found']
+        err = [...err, "Sponsor with id " + challenge.sponsor + " not found"]
     }
 
     return new ApiResult(err, {

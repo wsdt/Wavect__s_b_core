@@ -1,10 +1,10 @@
-import { IEmailHtmlProps } from './emailHtml.props'
+import { IEmailHtmlProps } from "./emailHtml.props"
 
-export const SMTP_PROVIDER: string = 'ssl0.ovh.net'
-export const REPLY_TO: string = 'kevin.riedl@wavect.io'
-export const FROM: string = 'noreply@wavect.io'
-export const FROM_PWD: string = '1etZ4bqH4ngik0gW43Qn'
-export const SUBJECT: string = 'A user solved your challenge'
+export const SMTP_PROVIDER: string = "ssl0.ovh.net"
+export const REPLY_TO: string = "kevin.riedl@wavect.io"
+export const FROM: string = "noreply@wavect.io"
+export const FROM_PWD: string = "1etZ4bqH4ngik0gW43Qn"
+export const SUBJECT: string = "A user solved your challenge"
 export const HTML = (props: IEmailHtmlProps) => {
     return `<h1>Challenge solved</h1>
     <p>First of all, thank you for using our service! Secondly, we have great news for you! 
