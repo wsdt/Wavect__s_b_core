@@ -1,13 +1,13 @@
-import { ApiResult } from "../../../routes/api/mobile/v1/ApiResult"
-import * as mongoose from "mongoose"
-import { COLLECTION_CHALLENGEINFORMATION_NAME } from "../../controllers/db/db.constants"
+import { ApiResult } from '../../../routes/api/mobile/v1/ApiResult'
+import * as mongoose from 'mongoose'
+import { COLLECTION_CHALLENGEINFORMATION_NAME } from '../../controllers/db/db.constants'
 
 export enum ChallengeInformationFields {
-    id = "id",
-    instruction = "instruction",
-    privacy = "privacy",
-    intention = "intention",
-    misc = "misc",
+    id = 'id',
+    instruction = 'instruction',
+    privacy = 'privacy',
+    intention = 'intention',
+    misc = 'misc',
 }
 
 const ChallengeInformationModel = new mongoose.Schema({

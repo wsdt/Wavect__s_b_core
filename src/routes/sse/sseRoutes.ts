@@ -1,4 +1,4 @@
-import * as express from "express"
+import * as express from 'express'
 const router = express.Router()
 
 /**
@@ -11,19 +11,19 @@ const router = express.Router()
 
 // Set headers for valid SSE handling (e.g. content-type: event-stream)
 router.use((_req, res, next) => {
-    res.header("Content-Type", "text/event-stream")
-    res.header("Cache-Control", "no-cache")
-    res.header("Connection", "keep-alive")
+    res.header('Content-Type', 'text/event-stream')
+    res.header('Cache-Control', 'no-cache')
+    res.header('Connection', 'keep-alive')
     next() // handle also other routes which are approached by this (here all routes)
 })
 
 // v1 routes can be modularized too!
-import { v1Router } from "./v1/newsfeed"
-router.use("/v1", v1Router)
+import { v1Router } from './v1/newsfeed'
+router.use('/v1', v1Router)
 
 // show page not found error for API use (json)
-router.use("*", (_req, res) => {
-    res.send("ERROR: Something went wrong.")
+router.use('*', (_req, res) => {
+    res.send('ERROR: Something went wrong.')
     // no next as this is the last route which is called when no other route defined.
 })
 
