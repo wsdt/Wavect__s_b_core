@@ -8,6 +8,7 @@ export enum ChallengeInformationFields {
     privacy = 'privacy',
     intention = 'intention',
     misc = 'misc',
+    reward = 'reward'
 }
 
 const ChallengeInformationModel = new mongoose.Schema({
@@ -16,6 +17,7 @@ const ChallengeInformationModel = new mongoose.Schema({
     [ChallengeInformationFields.privacy]: { type: String, required: true },
     [ChallengeInformationFields.intention]: { type: String, required: true },
     [ChallengeInformationFields.misc]: { type: String, required: false },
+    [ChallengeInformationFields.reward]: { type: String, required: true}
 })
 
 export const challengeInformationResponse = (err: any, info: any): ApiResult => {
@@ -25,6 +27,8 @@ export const challengeInformationResponse = (err: any, info: any): ApiResult => 
         [ChallengeInformationFields.privacy]: info.privacy,
         [ChallengeInformationFields.intention]: info.intention,
         [ChallengeInformationFields.misc]: info.misc,
+        [ChallengeInformationFields.reward]: info.reward,
+
     })
 }
 
