@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose'
-import {DATABASE_URI} from '../../../app.constants'
-import {BackendLogger} from '../../../logger/backendLogger'
+import { DATABASE_URI } from '../../../app.constants'
+import { BackendLogger } from '../../../logger/backendLogger'
 
 const logger = new BackendLogger('db.ts')
 

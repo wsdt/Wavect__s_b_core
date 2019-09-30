@@ -1,7 +1,7 @@
 ### STAGE 1: Build ###
 FROM node:11 as builder
 
-COPY package.json yarn.lock secrets ./
+COPY public package.json yarn.lock secrets ./
 
 ## Storing node modules on a separate layer will prevent unnecessary yarn installs at each build
 RUN yarn install && mkdir /app && mv ./node_modules /app
@@ -21,6 +21,7 @@ RUN mkdir /app && mkdir /app/logs
 COPY --from=builder /app/dist /app/dist
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /app/secrets /app/secrets
+COPY --from=builder /app/public /app/dist/public
 WORKDIR /app
 EXPOSE 8090
 CMD ["node","./dist/server.js"]

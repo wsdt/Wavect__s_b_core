@@ -11,19 +11,19 @@ import * as helmet from 'helmet'
  */
 import * as http from 'http'
 import * as morgan from 'morgan'
+import * as path from 'path'
 import * as polly from 'polly-js'
 import * as http2 from 'spdy'
 import { CLIENT_WEB, HTTP2_OPTIONS, PORT, USE_HTTPS } from './app.constants'
 import { graphqlRoot, graphqlSchema } from './graphql/graphql_queries'
-import {BackendLogger} from './logger/backendLogger'
+import { BackendLogger } from './logger/backendLogger'
 import { establishDbConnection } from './mvc/controllers/db/db'
 import * as routes from './routes/routes'
 
 // Set env variables
 dotenv.config({ path: __dirname + '/./../secrets/globals.env' })
 
-const logger:BackendLogger = new BackendLogger('app')
-
+const logger: BackendLogger = new BackendLogger('app')
 
 /**
  * Use HTTP 2, Server-Sent-Events and TSL.
@@ -46,8 +46,7 @@ class App {
     }
 
     public runServer() {
-        const server: http2.Server|http.Server = USE_HTTPS ? this.http2Server : this.http1Server
-
+        const server: http2.Server | http.Server = USE_HTTPS ? this.http2Server : this.http1Server
 
         // Retry if failed
         polly()
@@ -93,13 +92,16 @@ class App {
         // Add routes (sse + rest api)
         this.app.use('/', routes)
 
+        // Add static files (e.g. for images etc.)
+        this.app.use('/files', express.static( path.join(__dirname, 'public')))
+
         // For additional security
         this.app.use(helmet())
 
         // Log http requests
         this.app.use(morgan('combined'))
 
-        console.log('app: Configuration done.')
+        logger.info('app: Configuration done.')
     }
 }
 
