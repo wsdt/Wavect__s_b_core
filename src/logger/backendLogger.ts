@@ -1,10 +1,12 @@
 import * as path from 'path'
 
-const log = require('simple-node-logger') // use require as no declaration file exists
+// tslint:disable-next-line:no-var-requires
+const log = require('simple-node-logger')
+
 const timestampFormat = 'YYY-MM-DD HH:mm:ss.SSS'
 
 export class BackendLogger {
-    private filename: string
+    private readonly filename: string
     private logger: any
 
     constructor(fileNameWithoutExtension: string) {
@@ -12,7 +14,7 @@ export class BackendLogger {
 
         const opts = {
             logFilePath: path.join(process.cwd(), 'logs', `${this.filename}.log`),
-            timestampFormat: timestampFormat,
+            timestampFormat,
         }
 
         this.logger = log.createSimpleLogger(opts)

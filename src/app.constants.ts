@@ -25,5 +25,7 @@ export const HTTP2_OPTIONS = {
  */
 export const CLIENT_WEB = 'https://localhost:8080'
 
-export const DATABASE_URI =
-    process.env.DATABASE_URI && process.env.DATABASE_NAME ? `${process.env.DATABASE_URI}/${DB_NAME}` : `mongodb://192.168.99.100:27017/${DB_NAME}`
+export const DATABASE_URI = (process.env.DATABASE_USER && process.env.DATABASE_PWD)
+    ? `mongodb://${process.env.DATABASE_USER}:${process.env.DATABASE_PWD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`
+    : `mongodb://192.168.99.100:27017/${DB_NAME}` // try unauthenticated & local login if no env vars available
+

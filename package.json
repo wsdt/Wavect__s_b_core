@@ -15,6 +15,7 @@
         "mongodb": "^3.2.7",
         "mongoose": "^5.6.0",
         "nodemailer": "latest",
+        "polly-js": "^1.6.5",
         "spdy": "^4.0.0"
     },
     "devDependencies": {
@@ -32,7 +33,6 @@
         "@types/nodemailer": "^6.2.0",
         "@types/spdy": "^3.4.4",
         "concurrently": "^4.1.0",
-        "typescript": "^3.5.2",
         "husky": "^1.3.1",
         "jest": "^23.6.0",
         "morgan": "^1.9.1",
@@ -40,14 +40,15 @@
         "nps": "^5.9.3",
         "prettier": "^1.15.3",
         "rimraf": "^2.6.2",
+        "simple-node-logger": "latest",
         "ts-jest": "^23.10.5",
         "ts-node": "^7.0.1",
         "tslint": "^5.11.0",
         "tslint-config-prettier": "^1.17.0",
         "tslint-consistent-codestyle": "^1.14.1",
         "tslint-eslint-rules": "^5.4.0",
-        "typescript-eslint-parser": "^21.0.1",
-        "simple-node-logger": "latest"
+        "typescript": "^3.5.2",
+        "typescript-eslint-parser": "^21.0.1"
     },
     "scripts": {
         "start": "nps",

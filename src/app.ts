@@ -4,22 +4,26 @@ import * as dotenv from 'dotenv'
 import * as express from 'express'
 import * as graphqlHTTP from 'express-graphql'
 import * as helmet from 'helmet'
-import * as morgan from 'morgan'
-import { CLIENT_WEB, HTTP2_OPTIONS, PORT, USE_HTTPS } from './app.constants'
-import { graphqlRoot, graphqlSchema } from './graphql/graphql_queries'
-import * as routes from './routes/routes'
-
-// Set env variables
-dotenv.config({ path: __dirname + '/./../secrets/globals.env' })
-
 /**
  * Using spdy as http2 too, but not that fast as built-in module of node.JS.
  * But unfortunately, http2-module does not support express yet, so we have to
  * wait for express V5 to use http2 instead of spdy.
  */
 import * as http from 'http'
+import * as morgan from 'morgan'
+import * as polly from 'polly-js'
 import * as http2 from 'spdy'
+import { CLIENT_WEB, HTTP2_OPTIONS, PORT, USE_HTTPS } from './app.constants'
+import { graphqlRoot, graphqlSchema } from './graphql/graphql_queries'
+import {BackendLogger} from './logger/backendLogger'
 import { establishDbConnection } from './mvc/controllers/db/db'
+import * as routes from './routes/routes'
+
+// Set env variables
+dotenv.config({ path: __dirname + '/./../secrets/globals.env' })
+
+const logger:BackendLogger = new BackendLogger('app')
+
 
 /**
  * Use HTTP 2, Server-Sent-Events and TSL.
@@ -42,17 +46,21 @@ class App {
     }
 
     public runServer() {
-        const server = USE_HTTPS ? this.http2Server : this.http1Server
+        const server: http2.Server|http.Server = USE_HTTPS ? this.http2Server : this.http1Server
 
-        // @ts-ignore
-        server.listen(PORT, err => {
-            if (err) {
-                console.error(err)
-                return process.exit(1)
-            } else {
-                console.log('App:runServer: Listening on port: ' + PORT + ' using http2: ' + USE_HTTPS)
-            }
-        })
+
+        // Retry if failed
+        polly()
+            .waitAndRetry(5)
+            .executeForPromise(async () => {
+                try {
+                    logger.info(`runServer: Server listening on port ${PORT}`)
+                    return Promise.resolve(await server.listen(PORT))
+                } catch (e) {
+                    logger.error(`runServer: Could not bind server to port ${PORT} -> ${JSON.stringify(e)}`)
+                    return Promise.reject(e)
+                }
+            })
     }
 
     private config(): void {
