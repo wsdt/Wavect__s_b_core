@@ -93,7 +93,7 @@ class App {
         this.app.use('/', routes)
 
         // Add static files (e.g. for images etc.)
-        this.app.use('/files', express.static( path.join(__dirname, 'public')))
+        this.app.use('/files', express.static(path.join(__dirname, 'public')))
 
         // For additional security
         this.app.use(helmet())
