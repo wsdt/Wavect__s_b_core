@@ -9,7 +9,9 @@ router.use((_req, res, next) => {
 
 // Add mobile routes
 import * as mobileRoutes from './mobile/apiMobileRoutes'
+import * as webRoutes from './web/apiWebRoutes'
 router.use('/mobile', mobileRoutes)
+router.use('/web', webRoutes)
 
 // ADD here web and other routes (e.g. for regular website [not  just web-application])
 

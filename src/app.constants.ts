@@ -23,7 +23,7 @@ export const HTTP2_OPTIONS = {
 /**
  * Used by CORS Header to only specifically allow access to our frontend accessing our services.
  */
-export const CLIENT_WEB = 'https://localhost:8080'
+export const CLIENT_WEB = ['http://localhost:8080','http://localhost:3000', 'https://wavect.io']
 
 const getDatabaseUri = () => {
     if (process.env.DATABASE_USER && process.env.DATABASE_PWD) {

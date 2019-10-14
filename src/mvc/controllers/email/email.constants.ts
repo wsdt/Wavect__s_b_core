@@ -1,7 +1,7 @@
 import { IEmailHtmlProps } from './emailHtml.props'
 
 export const SMTP_PROVIDER: string = 'ssl0.ovh.net'
-export const REPLY_TO: string = 'kevin.riedl@wavect.io'
+export const KEVIN_MAIL: string = 'kevin.riedl@wavect.io'
 export const FROM: string = 'noreply@wavect.io'
 export const FROM_PWD: string = '1etZ4bqH4ngik0gW43Qn'
 export const SUBJECT: string = 'A user solved your challenge'
@@ -15,7 +15,7 @@ export const HTML = (props: IEmailHtmlProps) => {
     amongst all challenge-solvers.</p>
     <p>Please note that you are <strong>not</strong> allowed to use the submitted e-mail address for other purposes than mentioned above. Otherwise
     you may face a GDPR violation.</p>
-    <p>We take feedback seriously. Please let us know, what should be improved: <a href="mailto:${REPLY_TO}">${REPLY_TO}</a></p>
+    <p>We take feedback seriously. Please let us know, what should be improved: <a href="mailto:${KEVIN_MAIL}">${KEVIN_MAIL}</a></p>
     <p>Yours sincerely</p>
     <p>Your Wavect-Team</p>
 `
