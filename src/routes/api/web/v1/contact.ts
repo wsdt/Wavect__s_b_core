@@ -1,6 +1,6 @@
 import * as express from 'express'
-import {sendEmailToUs} from '../../../../mvc/controllers/email/email'
-import {ApiResult} from './ApiResult'
+import { sendEmailToUs } from '../../../../mvc/controllers/email/email'
+import { ApiResult } from './ApiResult'
 
 const router = express.Router()
 

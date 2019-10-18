@@ -1,6 +1,6 @@
 import * as nodemailer from 'nodemailer'
 import { BackendLogger } from '../../../logger/backendLogger'
-import {FROM, FROM_PWD, HTML, KEVIN_MAIL, SMTP_PROVIDER, SUBJECT} from './email.constants'
+import { FROM, FROM_PWD, HTML, KEVIN_MAIL, SMTP_PROVIDER, SUBJECT } from './email.constants'
 
 const logger = new BackendLogger('email.ts')
 
@@ -15,8 +15,7 @@ const transporter = nodemailer.createTransport({
     },
 })
 
-
-export const sendEmailToUs = async (autorMail: string, autorName: string, subject:string, text: string) => {
+export const sendEmailToUs = async (autorMail: string, autorName: string, subject: string, text: string) => {
     const mailOptions = {
         from: FROM,
         cc: autorMail,
@@ -35,7 +34,6 @@ export const sendEmailToUs = async (autorMail: string, autorName: string, subjec
     }
     return null
 }
-
 
 export const sendEmailToSponsor = async (userEmail: string, sponsorEmail: string) => {
     const mailOptions = {
