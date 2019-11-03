@@ -17,7 +17,7 @@ router.use('/web', webRoutes)
 
 // show page not found error for API use (json)
 router.use('*', (_req, res) => {
-    res.json({ error: { msg: 'Route not found.', err_code: 404 } })
+    res.json({ err: { msg: 'Route not found.', err_code: 404 } })
     // no next as this is the last route which is called when no other route defined.
 })
 

@@ -15,6 +15,26 @@ const transporter = nodemailer.createTransport({
     },
 })
 
+/** This e-mail is sent when an user wants to become an tester. */
+export const sendEmailOfNewTester = async (userMail: string) => {
+    const mailOptions = {
+        from: FROM,
+        replyTo: userMail,
+        to: KEVIN_MAIL,
+        subject: 'New tester request from '+userMail,
+        html: `New potential tester: <strong>${userMail}</strong>`,
+    }
+
+    try {
+        transporter.sendMail(mailOptions)
+        logger.info('Email sent!')
+    } catch (e) {
+        logger.error('Email not sent, Error:' + e.toString())
+        return e
+    }
+    return null
+}
+
 export const sendEmailToUs = async (autorMail: string, autorName: string, subject: string, text: string) => {
     const mailOptions = {
         from: FROM,
