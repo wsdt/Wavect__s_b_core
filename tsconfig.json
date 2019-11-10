@@ -1,5 +1,4 @@
 {
-    /** Do not extend as docker-build fails otherwise */
     "compileOnSave": true,
     "compilerOptions": {
         "baseUrl": ".",
