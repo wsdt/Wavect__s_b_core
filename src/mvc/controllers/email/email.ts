@@ -16,13 +16,14 @@ const transporter = nodemailer.createTransport({
 })
 
 /** This e-mail is sent when an user wants to become an tester. */
-export const sendEmailOfNewTester = async (userMail: string) => {
+export const sendEmailOfNewTester = async (userMail: string, wantsNewsletter:boolean) => {
     const mailOptions = {
         from: FROM,
         replyTo: userMail,
         to: KEVIN_MAIL,
-        subject: 'New tester request from '+userMail,
-        html: `New potential tester: <strong>${userMail}</strong>`,
+        subject: 'New tester request from ' + userMail,
+        html: `New potential tester: <strong>${userMail}</strong>
+            <p>Tester wants also to receive monthly newsletter: ${wantsNewsletter}</p>`,
     }
 
     try {
