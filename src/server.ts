@@ -1,7 +1,5 @@
 import App from './app'
 
-
-
 // Start http2Server (ausgelagert für Jest, damit kein Hook offen)
 App.runServer()
 
