@@ -11,4 +11,3 @@ module.exports = {
     collectCoverage: true,
     cacheDirectory: '.jest/cache',
 }
-
