@@ -2,6 +2,13 @@
 
 Routing is designed according to the "Convention over Configuration" AND "Configuration over Convention". That basically means that we should enforce the same folder-structure as defined in the node-routers. 
 
+## Features
+* Versionized REST-Api (JSON)
+* GraphQL-Support
+* HTTP 2 & TLS Support
+* Server-Sent-Events supported (used as Websockets are not supported by HTTP 2)
+* Dockerized (used in Docker Swarm in combination with [Polly](https://www.npmjs.com/package/polly-js))
+
 
 ## What was Wavect®? ("BeKind" from October 2018 - April 2019)
 Wavect® has been a Tech-Startup from October 2018 to May 2020 to offer low-priced and personalized Corporate-Social-Responsibility campaigns to SMEs. We basically built a social-platform where people can solve so-called challenges related to environment-protection, health and solidarity and win prizes based on their interests by companies they love (e.g. exclusive rebates, products, vouchers, ...).
