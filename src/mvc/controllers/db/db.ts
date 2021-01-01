@@ -16,8 +16,9 @@ export const establishDbConnection = async () => {
         await mongoose.connect(DATABASE_URI, {
             useNewUrlParser: true,
             autoIndex: false,
-            reconnectTries: Number.MAX_VALUE,
-            reconnectInterval: 60000, // retry every 60 seconds
+            // reconnectTries: Number.MAX_VALUE,
+            useUnifiedTopology: true,
+            // reconnectInterval: 60000, // retry every 60 seconds
         })
 
         logger.info('establishDbConnection: Established db connection successfully.')

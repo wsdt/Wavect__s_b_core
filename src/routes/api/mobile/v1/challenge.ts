@@ -8,7 +8,9 @@ const router = express.Router()
 const logger = new BackendLogger('challenge.ts')
 
 router.route('/current').get((_, res) => {
-    Challenge.findOne({ id: SPONSOR_CHALLENGE_CONSTANT }).exec(async (err, challenge) => {
+
+    Challenge.findOne({ id: SPONSOR_CHALLENGE_CONSTANT }).exec(async (err: any, challenge: any) => {
+        console.log("ERRRR", err, challenge)
         try {
             if (challenge) {
                 ;(await challengeToResponse(err, challenge)).sendJson(res)
@@ -19,6 +21,7 @@ router.route('/current').get((_, res) => {
             }
         } catch (e) {
             logger.error(`Unknown error occurred -> ${JSON.stringify(e)}`)
+            console.error("ERRR: ", e)
             ApiResult.sendJson(res, e, null)
         }
     })

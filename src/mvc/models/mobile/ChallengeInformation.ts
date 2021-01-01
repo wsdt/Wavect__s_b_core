@@ -20,14 +20,14 @@ const ChallengeInformationModel = new mongoose.Schema({
     [ChallengeInformationFields.reward]: { type: String, required: true },
 })
 
-export const challengeInformationResponse = (err: any, info: any): ApiResult => {
+export const challengeInformationResponse = (err: any, info?: any): ApiResult => {
     return new ApiResult(err, {
-        [ChallengeInformationFields.id]: info.id,
-        [ChallengeInformationFields.instruction]: info.instruction,
-        [ChallengeInformationFields.privacy]: info.privacy,
-        [ChallengeInformationFields.intention]: info.intention,
-        [ChallengeInformationFields.misc]: info.misc,
-        [ChallengeInformationFields.reward]: info.reward,
+        [ChallengeInformationFields.id]: info?.id,
+        [ChallengeInformationFields.instruction]: info?.instruction,
+        [ChallengeInformationFields.privacy]: info?.privacy,
+        [ChallengeInformationFields.intention]: info?.intention,
+        [ChallengeInformationFields.misc]: info?.misc,
+        [ChallengeInformationFields.reward]: info?.reward,
     })
 }
 

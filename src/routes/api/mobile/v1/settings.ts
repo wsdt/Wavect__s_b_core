@@ -5,7 +5,7 @@ import { ApiResult } from './ApiResult'
 const router = express.Router()
 
 router.route('/:userId').get((req, res) => {
-    Settings.findOne({ userId: req.params.userId }).exec((err, userSetting) => {
+    Settings.findOne({ userId: req.params.userId }).exec((err: any, userSetting: any) => {
         ApiResult.sendJson(res, err, userSetting)
     })
 })
@@ -18,7 +18,7 @@ router.route('/:userId').post((req, res) => {
     })
 
     // Delete old settings TODO: Does not seem to work as expected (if not deleted the user cannot insert his email when it has been already used [as we curr use temp. generated userIds this is necessary)
-    Settings.deleteOne({ email: req.body.email }, (err: any) => {
+    Settings.deleteOne({ email: req.body.email }, undefined, (err: any) => {
         if (err) {
             console.error(err)
         }

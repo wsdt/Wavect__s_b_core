@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose'
 
 import { ApiResult } from '../../../routes/api/mobile/v1/ApiResult'
-import { COLLECTION_CHALLENGE_NAME } from '../../controllers/db/db.constants'
+import { COLLECTION_CHALLENGEINFORMATION_NAME, COLLECTION_CHALLENGE_NAME } from '../../controllers/db/db.constants'
 import { ChallengeCategory } from './ChallengeCategory'
 import { ImageURISource } from './ImageURISource'
 import { Sponsor, SponsorFields, sponsorToResponse } from './Sponsor'
@@ -39,13 +39,16 @@ ChallengeModel.set('toJSON', { getters: true })
 export const challengeToResponse = async (err: any, challenge: any): Promise<ApiResult> => {
     const sponsor: any = await Sponsor.findOne({ [SponsorFields.id]: challenge.sponsor }).exec()
     const challengeInformation: any = await ChallengeInformation.findOne({ [ChallengeInformationFields.id]: challenge.challengeInformation }).exec()
+    if (!err) err = []
 
+    const allChallenges = await ChallengeInformation.find().exec()
+    console.error("H2", challengeInformation, challenge.challengeInformation, allChallenges)
     if (!sponsor) {
         err = [...err, 'Sponsor with id ' + challenge.sponsor + ' not found']
     }
 
     if (!challengeInformation) {
-        err = [...err, '[BRUH] No ChallengeInformation found!']
+        // err = [...err, 'No ChallengeInformation found!']
     }
 
     return new ApiResult(err, {

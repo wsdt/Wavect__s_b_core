@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.route('/current/:userId').post((req, res) => {
     const userId: string = req.params.userId
-    Settings.findOne({ userId }, async (err, settings) => {
+    Settings.findOne({ userId }, async (err: any, settings: any) => {
         if (err || settings === null) {
             ApiResult.sendJson(res, err, null)
         } else {

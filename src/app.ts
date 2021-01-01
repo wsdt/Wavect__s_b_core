@@ -2,7 +2,7 @@ import * as bodyParser from 'body-parser'
 import * as cors from 'cors'
 import * as dotenv from 'dotenv'
 import * as express from 'express'
-import * as graphqlHTTP from 'express-graphql'
+import {graphqlHTTP} from 'express-graphql'
 import * as helmet from 'helmet'
 /**
  * Using spdy as http2 too, but not that fast as built-in module of node.JS.

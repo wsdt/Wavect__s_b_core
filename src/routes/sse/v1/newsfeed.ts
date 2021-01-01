@@ -1,4 +1,4 @@
-import * as EventEmitter from 'events'
+import {EventEmitter} from 'events'
 import * as express from 'express'
 
 export const v1Router = express.Router()

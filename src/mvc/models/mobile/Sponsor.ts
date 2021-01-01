@@ -40,22 +40,22 @@ const SponsorModel = new mongoose.Schema({
 SponsorModel.set('toObject', { getters: true })
 SponsorModel.set('toJSON', { getters: true })
 
-export const sponsorToResponse = (err: any, sponsor: any): ApiResult => {
+export const sponsorToResponse = (err: any, sponsor?: any): ApiResult => {
     // use function not arrow for this
     return new ApiResult(err, {
-        [SponsorFields.id]: sponsor.id,
-        [SponsorFields.name]: sponsor.name,
-        [SponsorFields.logoUri]: sponsor.logoUri,
-        [SponsorFields.coverUri]: sponsor.coverUri,
-        [SponsorFields.shortDescr]: sponsor.shortDescr,
-        [SponsorFields.website]: sponsor.website,
-        [SponsorFields.email]: sponsor.email,
-        [SponsorFields.aboutUs]: sponsor.aboutUs,
-        [SponsorFields.misc]: sponsor.misc,
-        [SponsorFields.linkedin]: sponsor.linkedin,
-        [SponsorFields.youtube]: sponsor.youtube,
-        [SponsorFields.instagram]: sponsor.instagram,
-        [SponsorFields.facebook]: sponsor.facebook,
+        [SponsorFields.id]: sponsor?.id,
+        [SponsorFields.name]: sponsor?.name,
+        [SponsorFields.logoUri]: sponsor?.logoUri,
+        [SponsorFields.coverUri]: sponsor?.coverUri,
+        [SponsorFields.shortDescr]: sponsor?.shortDescr,
+        [SponsorFields.website]: sponsor?.website,
+        [SponsorFields.email]: sponsor?.email,
+        [SponsorFields.aboutUs]: sponsor?.aboutUs,
+        [SponsorFields.misc]: sponsor?.misc,
+        [SponsorFields.linkedin]: sponsor?.linkedin,
+        [SponsorFields.youtube]: sponsor?.youtube,
+        [SponsorFields.instagram]: sponsor?.instagram,
+        [SponsorFields.facebook]: sponsor?.facebook,
     })
 }
 
